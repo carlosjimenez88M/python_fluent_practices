@@ -1,4 +1,4 @@
-"""CLI interface for Platzi News."""
+"""CLI interface for News."""
 
 import logging
 import sys
@@ -11,7 +11,7 @@ from .display import display_answer, display_articles, display_error
 
 def print_help() -> None:
 	"""Print help message."""
-	print("Usage: platzi-news [command] [options]")
+	print("Usage: news [command] [options]")
 	print("Commands:")
 	print("  search <query> --source <source>    Search articles")
 	print("  ask <query> <question> --source <source>    Ask about news")
@@ -42,14 +42,14 @@ def parse_args() -> SimpleNamespace:
 
 	if command == "search":
 		if len(sys.argv) != 5 or sys.argv[3] != "--source":
-			print("Usage: platzi-news search <query> --source <source>")
+			print("Usage: news search <query> --source <source>")
 			sys.exit(1)
 		query = sys.argv[2]
 		source = sys.argv[4]
 		return SimpleNamespace(command=command, query=query, source=source, log_level=log_level)
 	elif command == "ask":
 		if len(sys.argv) != 6 or sys.argv[4] != "--source":
-			print("Usage: platzi-news ask <query> <question> --source <source>")
+			print("Usage: news ask <query> <question> --source <source>")
 			sys.exit(1)
 		query = sys.argv[2]
 		question = sys.argv[3]

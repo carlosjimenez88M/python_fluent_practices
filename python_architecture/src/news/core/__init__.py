@@ -1,1 +1,1 @@
-"""Core functionality for Platzi News."""
+"""Core functionality for News."""

@@ -1,1 +1,1 @@
-"""Tests for Platzi News."""
+"""Tests for News."""

@@ -3,15 +3,15 @@
 import unittest
 from unittest.mock import Mock, patch
 
-from platzi_news.analysis.analyzer import OpenAIAnalyzer, get_analyzer
-from platzi_news.core.exceptions import AnalysisError
-from platzi_news.core.models import Article
+from news.analysis.analyzer import OpenAIAnalyzer, get_analyzer
+from news.core.exceptions import AnalysisError
+from news.core.models import Article
 
 
 class TestOpenAIAnalyzer(unittest.TestCase):
 	"""Test OpenAIAnalyzer."""
 
-	@patch("platzi_news.analysis.analyzer.OpenAI")
+	@patch("news.analysis.analyzer.OpenAI")
 	def test_analyze_success(self, mock_openai):
 		mock_client = Mock()
 		mock_openai.return_value = mock_client
@@ -25,13 +25,13 @@ class TestOpenAIAnalyzer(unittest.TestCase):
 		answer = analyzer.analyze(articles, "What is this about?")
 		self.assertEqual(answer, "Test answer")
 
-	@patch("platzi_news.analysis.analyzer.OpenAI")
+	@patch("news.analysis.analyzer.OpenAI")
 	def test_analyze_no_articles(self, mock_openai):
 		analyzer = OpenAIAnalyzer("fake_key")
 		answer = analyzer.analyze([], "Question")
 		self.assertEqual(answer, "No se encontraron artículos para analizar.")
 
-	@patch("platzi_news.analysis.analyzer.OpenAI")
+	@patch("news.analysis.analyzer.OpenAI")
 	def test_analyze_error(self, mock_openai):
 		mock_client = Mock()
 		mock_openai.return_value = mock_client
@@ -46,7 +46,7 @@ class TestOpenAIAnalyzer(unittest.TestCase):
 class TestGetAnalyzer(unittest.TestCase):
 	"""Test get_analyzer factory."""
 
-	@patch("platzi_news.config.settings")
+	@patch("news.config.settings")
 	def test_get_analyzer_success(self, mock_settings):
 		mock_settings.openai_api_key = "fake_key"
 		analyzer = get_analyzer()

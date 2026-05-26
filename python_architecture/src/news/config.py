@@ -1,4 +1,4 @@
-"""Configuration management for Platzi News."""
+"""Configuration management for News."""
 
 import sentry_sdk
 from pydantic import Field, ValidationError
@@ -17,7 +17,7 @@ class Settings(BaseSettings):
 	)
 
 	# API Keys (required)
-	guardian_api_key: str 
+	guardian_api_key: str
 	newsapi_api_key: str
 	openai_api_key: str
 

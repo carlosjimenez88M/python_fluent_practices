@@ -3,7 +3,7 @@
 import unittest
 from unittest.mock import patch
 
-from platzi_news.config import Settings
+from news.config import Settings
 
 
 class TestSettings(unittest.TestCase):

@@ -5,21 +5,21 @@ from unittest.mock import Mock, patch
 
 import requests
 
-from platzi_news.core.exceptions import APIError
-from platzi_news.core.services import NewsService
-from platzi_news.sources.guardian import GuardianAPI
-from platzi_news.sources.newsapi import NewsAPI
+from news.core.exceptions import APIError
+from news.core.services import NewsService
+from news.sources.guardian import GuardianAPI
+from news.sources.newsapi import NewsAPI
 
 
 class TestGuardianAPI(unittest.TestCase):
 	"""Test GuardianAPI."""
 
-	@patch("platzi_news.config.settings")
+	@patch("news.config.settings")
 	def setUp(self, mock_settings):
 		mock_settings.guardian_api_key = "fake_key"
 		self.api = GuardianAPI()
 
-	@patch("platzi_news.sources.newsapi.requests.get")
+	@patch("news.sources.newsapi.requests.get")
 	def test_fetch_articles_success(self, mock_get):
 		mock_response = Mock()
 		mock_response.raise_for_status.return_value = None
@@ -42,7 +42,7 @@ class TestGuardianAPI(unittest.TestCase):
 		self.assertEqual(articles[0].description, "Test description")
 		self.assertEqual(articles[0].url, "http://example.com")
 
-	@patch("platzi_news.sources.guardian.requests.get")
+	@patch("news.sources.guardian.requests.get")
 	def test_fetch_articles_error(self, mock_get):
 		mock_get.side_effect = requests.RequestException("Network error")
 		with self.assertRaises(APIError):
@@ -52,12 +52,12 @@ class TestGuardianAPI(unittest.TestCase):
 class TestNewsAPI(unittest.TestCase):
 	"""Test NewsAPI."""
 
-	@patch("platzi_news.config.settings")
+	@patch("news.config.settings")
 	def setUp(self, mock_settings):
 		mock_settings.newsapi_api_key = "fake_key"
 		self.api = NewsAPI()
 
-	@patch("platzi_news.sources.guardian.requests.get")
+	@patch("news.sources.guardian.requests.get")
 	def test_fetch_articles_success(self, mock_get):
 		mock_response = Mock()
 		mock_response.raise_for_status.return_value = None
@@ -76,7 +76,7 @@ class TestNewsAPI(unittest.TestCase):
 		self.assertEqual(len(articles), 1)
 		self.assertEqual(articles[0].title, "Test Title")
 
-	@patch("platzi_news.sources.newsapi.requests.get")
+	@patch("news.sources.newsapi.requests.get")
 	def test_fetch_articles_error(self, mock_get):
 		mock_get.side_effect = requests.RequestException("Network error")
 		with self.assertRaises(APIError):
@@ -86,8 +86,8 @@ class TestNewsAPI(unittest.TestCase):
 class TestNewsService(unittest.TestCase):
 	"""Test NewsService."""
 
-	@patch("platzi_news.config.settings")
-	@patch("platzi_news.core.services.get_analyzer")
+	@patch("news.config.settings")
+	@patch("news.core.services.get_analyzer")
 	def test_init(self, mock_get_analyzer, mock_settings):
 		mock_settings.guardian_api_key = "fake_guardian"
 		mock_settings.newsapi_api_key = "fake_newsapi"
@@ -109,7 +109,7 @@ class TestNewsService(unittest.TestCase):
 		with self.assertRaises(ValueError):
 			service.get_source("invalid")
 
-	@patch("platzi_news.core.services.GuardianAPI")
+	@patch("news.core.services.GuardianAPI")
 	def test_search_articles(self, mock_guardian):
 		mock_source = Mock()
 		mock_source.fetch_articles.return_value = [Mock()]
@@ -121,7 +121,7 @@ class TestNewsService(unittest.TestCase):
 		mock_source.fetch_articles.assert_called_once_with("query")
 		self.assertEqual(len(articles), 1)
 
-	@patch("platzi_news.core.services.get_analyzer")
+	@patch("news.core.services.get_analyzer")
 	def test_analyze_articles(self, mock_get_analyzer):
 		mock_analyzer = Mock()
 		mock_analyzer.analyze.return_value = "answer"

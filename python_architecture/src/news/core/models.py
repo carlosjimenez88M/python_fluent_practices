@@ -1,4 +1,4 @@
-"""Data models for Platzi News."""
+"""Data models for News."""
 
 from dataclasses import dataclass
 

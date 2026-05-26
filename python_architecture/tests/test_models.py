@@ -2,7 +2,7 @@
 
 import unittest
 
-from platzi_news.core.models import Article
+from news.core.models import Article
 
 
 class TestArticle(unittest.TestCase):

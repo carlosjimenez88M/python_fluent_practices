@@ -1,1 +1,1 @@
-"""Analysis functionality for Platzi News."""
+"""Analysis functionality for News."""

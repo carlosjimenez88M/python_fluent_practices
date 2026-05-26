@@ -27,13 +27,13 @@ class NewsService:
 		"""Get a news source by name.
 
 		Args:
-		    source_name: The name of the news source ('guardian' or 'newsapi').
+			source_name: The name of the news source ('guardian' or 'newsapi').
 
 		Returns:
-		    The corresponding NewsSource instance.
+			The corresponding NewsSource instance.
 
 		Raises:
-		    ValueError: If the source name is unknown.
+			ValueError: If the source name is unknown.
 		"""
 		if source_name not in self.sources:
 			raise ValueError(f"Unknown source: {source_name}")
@@ -43,11 +43,11 @@ class NewsService:
 		"""Search for articles from a specific source.
 
 		Args:
-		    source_name: The name of the news source to search in.
-		    query: The search query string.
+			source_name: The name of the news source to search in.
+			query: The search query string.
 
 		Returns:
-		    A list of Article objects matching the query.
+			A list of Article objects matching the query.
 		"""
 		source = self.get_source(source_name)
 		return source.fetch_articles(query)
@@ -56,11 +56,11 @@ class NewsService:
 		"""Search for articles from a specific source.
 
 		Args:
-		    source_name: The name of the news source to search in.
-		    query: The search query string.
+			source_name: The name of the news source to search in.
+			query: The search query string.
 
 		Returns:
-		    A list of Article objects matching the query.
+			A list of Article objects matching the query.
 		"""
 		source = self.get_source(source_name)
 		return await source.afetch_articles(query)
@@ -69,11 +69,11 @@ class NewsService:
 		"""Analyze articles and answer a question.
 
 		Args:
-		    articles: List of articles to analyze.
-		    question: The question to answer based on the articles.
+			articles: List of articles to analyze.
+			question: The question to answer based on the articles.
 
 		Returns:
-		    The AI-generated answer.
+			The AI-generated answer.
 		"""
 		return self.analyzer.analyze(articles, question)
 

@@ -1,4 +1,4 @@
-"""Display utilities for Platzi News."""
+"""Display utilities for News."""
 
 from rich.console import Console
 

@@ -1,1 +1,1 @@
-"""Input/Output functionality for Platzi News."""
+"""Input/Output functionality for News."""

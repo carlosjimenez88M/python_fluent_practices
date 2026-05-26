@@ -1,4 +1,4 @@
-"""Main entry point for Platzi News."""
+"""Main entry point for News."""
 
 import asyncio
 

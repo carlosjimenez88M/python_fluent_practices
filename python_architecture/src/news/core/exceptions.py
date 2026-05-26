@@ -1,31 +1,31 @@
-"""Custom exceptions for Platzi News."""
+"""Custom exceptions for News."""
 
 
-class PlatziNewsError(Exception):
-	"""Base exception for Platzi News application."""
+class NewsError(Exception):
+	"""Base exception for News application."""
 
 	pass
 
 
-class ConfigError(PlatziNewsError):
+class ConfigError(NewsError):
 	"""Raised when there are configuration issues."""
 
 	pass
 
 
-class APIError(PlatziNewsError):
+class APIError(NewsError):
 	"""Raised when there are API-related errors."""
 
 	pass
 
 
-class AnalysisError(PlatziNewsError):
+class AnalysisError(NewsError):
 	"""Raised when there are analysis-related errors."""
 
 	pass
 
 
-class SourceError(PlatziNewsError):
+class SourceError(NewsError):
 	"""Raised when there are news source-related errors."""
 
 	pass

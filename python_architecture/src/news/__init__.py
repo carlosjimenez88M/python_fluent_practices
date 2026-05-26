@@ -1,1 +1,1 @@
-"""Platzi News CLI application package."""
+"""News CLI application package."""
