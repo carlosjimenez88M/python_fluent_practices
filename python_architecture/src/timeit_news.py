@@ -1,4 +1,5 @@
 import timeit
+from functools import partial
 
 from news.analysis.analyzer import (
 	find_duplicate_titles,
@@ -32,11 +33,11 @@ def test_performance() -> None:
 		articles = create_test_articles(size)
 
 		time_original = timeit.timeit(
-			lambda articles=articles: find_duplicate_titles(articles),
+			partial(find_duplicate_titles, articles),
 			number=1,
 		)
 		time_improved = timeit.timeit(
-			lambda articles=articles: find_duplicate_titles_improved(articles),
+			partial(find_duplicate_titles_improved, articles),
 			number=1,
 		)
 
